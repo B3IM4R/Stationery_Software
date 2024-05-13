@@ -1,1 +1,1 @@
-# Software for Inventory Management of a Stationery Store
+# Stationery Inventory Management Software
