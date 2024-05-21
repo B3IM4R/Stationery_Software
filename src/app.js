@@ -1,10 +1,10 @@
 const express = require('express');
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-
-const userRoutes = require('./api/routes/userRoutes');
 app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
