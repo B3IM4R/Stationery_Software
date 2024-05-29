@@ -12,6 +12,27 @@ exports.getAllProducts = (req, res) => {
   });
 };
 
+// Función para obtener un producto por su código
+exports.getProductByCode = (req, res) => {
+    const productCode = req.params.productCode;
+
+    db.query('SELECT * FROM products WHERE productCode = ?', [productCode], (err, rows) => {
+        if (err) {
+            console.error('Error al obtener el producto:', err);
+            res.status(500).send('Error al obtener el producto');
+            return;
+        }
+
+        if (rows.length === 0) {
+            res.status(404).send('Producto no encontrado');
+            return;
+        }
+
+        const product = rows[0];
+        res.status(200).json(product);
+    });
+};
+
 // Función para crear un nuevo producto
 exports.createProduct = (req, res) => {
   const { productCode, name, price, quantityAvailable } = req.body;
